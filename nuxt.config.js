@@ -1,123 +1,133 @@
-const _ = require('lodash');
-const env = require('dotenv').config();  
-const Prismic = require('prismic-javascript');
+const _ = require("lodash");
+const env = require("dotenv").config();
+const Prismic = require("prismic-javascript");
 import linkResolver from "./plugins/link-resolver";
 
 export default {
-    target: 'static',
-    head: {
-        meta: [
-            { charset: 'utf-8' },
-            { name: 'viewport', content: 'width=device-width, initial-scale=1' }
-        ].concat( (_.upperCase(env.parsed.APP_DEBUG) == 'TRUE') ? [{ name: 'robots', content: 'noindex' }] : []),
-        script: [
-            { src: 'https://kit.fontawesome.com/5358a9e894.js', defer: true, async: true }
-        ]
-    },
-
-    css: [
-        '@/assets/css/main.scss'
+  target: "static",
+  head: {
+    meta: [
+      { charset: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+    ].concat(
+      _.upperCase(env.parsed.APP_DEBUG) == "TRUE"
+        ? [{ name: "robots", content: "noindex" }]
+        : []
+    ),
+    script: [
+      {
+        src: "https://kit.fontawesome.com/5358a9e894.js",
+        defer: true,
+        async: true,
+      },
     ],
+  },
 
-    loading: { color: '#000', height: '5px' },
+  css: ["@/assets/css/main.scss"],
 
-    modules: [
-        '@nuxtjs/prismic',
-        ['nuxt-bugsnag', {
-            apiKey: '033488aedfeada304877f3d9f04689b6',
-            reporterOptions: {
-                releaseStage: (_.upperCase(env.parsed.APP_DEBUG) == 'TRUE') ? 'development' : 'production',
-                autoAssignRelease: true
-            },
-            publishRelease: true,
-        }]
-    ],
+  loading: { color: "#000", height: "5px" },
 
-    buildModules: [
-        '@nuxtjs/gtm'
-    ],
-
-    build: {
-        transpile: [
-            '@swegaming-ab/vue-components'
-        ]
-    },
-
-    prismic: {
-        endpoint: env.parsed.PRISMIC_URL,
-        apiOptions: {
-            accessToken: env.parsed.PRISMIC_TOKEN
+  modules: [
+    "@nuxtjs/prismic",
+    [
+      "nuxt-bugsnag",
+      {
+        apiKey: "033488aedfeada304877f3d9f04689b6",
+        reporterOptions: {
+          releaseStage:
+            _.upperCase(env.parsed.APP_DEBUG) == "TRUE"
+              ? "development"
+              : "production",
+          autoAssignRelease: true,
         },
-        linkResolver: '@/plugins/link-resolver',
-        htmlSerializer: '@/plugins/html-serializer'
-    },
-
-    gtm: {
-        enabled: !(_.upperCase(env.parsed.APP_DEBUG) === 'TRUE'),
-        id: env.parsed.GTM_ID || 'undefined',
-        pageTracking: true
-    },
-
-    plugins: [
-        '@/plugins/global-components.js',
-        '@/plugins/helpers.js',
+        publishRelease: true,
+      },
     ],
+  ],
 
-    env: env.parsed, 
+  buildModules: ["@nuxtjs/gtm"],
 
-    generate: {
-        crawler: false, 
-        fallback: '404.html',
-        async routes() {
-            let api = await Prismic.getApi(env.parsed.PRISMIC_URL, { accessToken: env.parsed.PRISMIC_TOKEN });
-            let documents = [];
-            var page = 1; 
-            
-            while(true) {
-                var response = await api.query(
-                    Prismic.Predicates.any(
-                        'document.type',
-                        ['post', 'page', 'insurance']
-                    ),
-                    { pageSize: 100, page: page}
-                );
+  build: {
+    transpile: ["@swegaming-ab/vue-components"],
+  },
 
-                if(response.results_size) {
-                    documents = documents.concat(response.results);
-                }
-
-                if(response.page >= response.total_pages) {
-                    break;
-                }
-
-                page++;
-            }
-
-            let outs = [];
-            let routes =  documents.map((document) => {
-
-                if(document.type == 'insurance' && document.data.tracking_link) {
-                    outs.push('/out/' + document.uid + '/');
-                }
-
-                return linkResolver(document);
-            }).filter(route => route != null);
-
-            return routes.concat(outs);
-        }
+  prismic: {
+    endpoint: env.parsed.PRISMIC_URL,
+    apiOptions: {
+      accessToken: env.parsed.PRISMIC_TOKEN,
     },
+    linkResolver: "@/plugins/link-resolver",
+    htmlSerializer: "@/plugins/html-serializer",
+  },
 
-    
-    hooks: {
-        generate: {
-            routeFailed({route, errors}) {
-                throw new Error('Generator failed on ' + route + '. Error: ' + JSON.stringify(errors));
-            },
-            done(generator, errors) {
-                if(errors.length > 0) {
-                    throw new Error('Not completed');
-                }
-            }
+  gtm: {
+    enabled: !(_.upperCase(env.parsed.APP_DEBUG) === "TRUE"),
+    id: env.parsed.GTM_ID || "undefined",
+    pageTracking: true,
+  },
+
+  plugins: ["@/plugins/global-components.js", "@/plugins/helpers.js"],
+
+  env: env.parsed,
+
+  generate: {
+    crawler: false,
+    fallback: "404.html",
+    async routes() {
+      let api = await Prismic.getApi(env.parsed.PRISMIC_URL, {
+        accessToken: env.parsed.PRISMIC_TOKEN,
+      });
+      let documents = [];
+      var page = 1;
+
+      while (true) {
+        var response = await api.query(
+          Prismic.Predicates.any("document.type", [
+            "post",
+            "page",
+            "insurance",
+          ]),
+          { pageSize: 100, page: page }
+        );
+
+        if (response.results_size) {
+          documents = documents.concat(response.results);
         }
-    }
-}
+
+        if (response.page >= response.total_pages) {
+          break;
+        }
+
+        page++;
+      }
+
+      let outs = [];
+      let routes = documents
+        .map((document) => {
+          if (document.type == "insurance" && document.data.tracking_link) {
+            outs.push("/out/" + document.uid + "/");
+          }
+
+          return linkResolver(document);
+        })
+        .filter((route) => route != null);
+
+      return routes.concat(outs);
+    },
+  },
+
+  hooks: {
+    generate: {
+      routeFailed({ route, errors }) {
+        throw new Error(
+          "Generator failed on " + route + ". Error: " + JSON.stringify(errors)
+        );
+      },
+      done(generator, errors) {
+        if (errors.length > 0) {
+          throw new Error("Not completed");
+        }
+      },
+    },
+  },
+};
