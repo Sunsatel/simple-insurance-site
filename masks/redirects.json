@@ -1,0 +1,24 @@
+{
+    "Redirects" : {
+      "redirects" : {
+        "type" : "Group",
+        "config" : {
+          "fields" : {
+            "source" : {
+              "type" : "Text",
+              "config" : {
+                "label" : "Source"
+              }
+            },
+            "destination" : {
+              "type" : "Text",
+              "config" : {
+                "label" : "Destination"
+              }
+            }
+          },
+          "label" : "Redirects"
+        }
+      }
+    }
+  }

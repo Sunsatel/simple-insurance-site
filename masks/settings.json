@@ -1,0 +1,74 @@
+{
+  "Main": {
+    "favico": {
+      "type": "Image",
+      "config": {
+        "constraint": {},
+        "thumbnails": [],
+        "label": "favico"
+      }
+    },
+    "logo": {
+      "type": "Image",
+      "config": {
+        "constraint": {},
+        "thumbnails": [],
+        "label": "logo"
+      }
+    },
+    "banner_image": {
+      "type": "Image",
+      "config": {
+        "constraint": {},
+        "thumbnails": [],
+        "label": "banner image"
+      }
+    }
+  },
+  "Footer": {
+    "footer_for_users": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "link_text": {
+            "type": "Text",
+            "config": {
+              "label": "link text"
+            }
+          },
+          "link_item": {
+            "type": "Link",
+            "config": {
+              "select": "document",
+              "label": "link item"
+            }
+          }
+        },
+        "label": "footer_for_users"
+      }
+    }
+  },
+  "Data Settings": {
+    "use_data_life_insurance_expires": {
+      "type": "Boolean",
+      "config": {
+        "default_value": false,
+        "label": "use data life insurance expires"
+      }
+    },
+    "use_data_life_insurance": {
+      "type": "Boolean",
+      "config": {
+        "default_value": false,
+        "label": "use data life insurance"
+      }
+    },
+    "use_data_veterinary": {
+      "type": "Boolean",
+      "config": {
+        "default_value": false,
+        "label": "use data veterinary"
+      }
+    }
+  }
+}

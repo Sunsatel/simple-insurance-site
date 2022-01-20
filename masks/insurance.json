@@ -1,0 +1,177 @@
+{
+    "Main" : {
+      "title" : {
+        "type" : "Text",
+        "config" : {
+          "label" : "Title",
+          "useAsTitle" : true
+        }
+      },
+      "uid" : {
+        "type" : "UID",
+        "config" : {
+          "label" : "uid"
+        }
+      },
+      "seo_title" : {
+        "type" : "Text",
+        "config" : {
+          "label" : "seo title"
+        }
+      },
+      "seo_description" : {
+        "type" : "Text",
+        "config" : {
+          "label" : "seo description"
+        }
+      },
+      "tracking_link" : {
+        "type" : "Text",
+        "config" : {
+          "label" : "tracking_link"
+        }
+      },
+      "logo" : {
+        "type" : "Image",
+        "config" : {
+          "constraint" : { },
+          "thumbnails" : [ ],
+          "label" : "Logo"
+        }
+      }
+    },
+    "Pros" : {
+      "pros_in_list" : {
+        "type" : "Group",
+        "config" : {
+          "fields" : {
+            "pro" : {
+              "type" : "Text",
+              "config" : {
+                "label" : "pro"
+              }
+            }
+          },
+          "label" : "pros in list"
+        }
+      },
+      "pros_in_review" : {
+        "type" : "Group",
+        "config" : {
+          "fields" : {
+            "pro" : {
+              "type" : "Text",
+              "config" : {
+                "label" : "pro"
+              }
+            }
+          },
+          "label" : "pros in review"
+        }
+      }
+    },
+    "Data" : {
+      "max_payment" : {
+        "type" : "Text",
+        "config" : {
+          "label" : "max payment",
+          "placeholder" : "140 000 kr"
+        }
+      },
+      "max_payment_decrease" : {
+        "type" : "Text",
+        "config" : {
+          "label" : "max payment decrease",
+          "placeholder" : "Ja/Nej"
+        }
+      },
+      "waiting_period" : {
+        "type" : "Text",
+        "config" : {
+          "label" : "waiting period",
+          "placeholder" : "14 dagar"
+        }
+      },
+      "excess" : {
+        "type" : "Text",
+        "config" : {
+          "label" : "excess",
+          "placeholder" : "Valbar / 900 kr & 15% – 3600 kr & 25% / 1 800 kr & 15% – 4 500 kr & 25%"
+        }
+      },
+      "excess_period" : {
+        "type" : "Text",
+        "config" : {
+          "label" : "excess period",
+          "placeholder" : "365 dagar"
+        }
+      },
+      "veterinary_before" : {
+        "type" : "Text",
+        "config" : {
+          "label" : "veterinary_before",
+          "placeholder" : "Upp t.om 8 år / Ingen övre gräns"
+        }
+      },
+      "life_insurance_before" : {
+        "type" : "Text",
+        "config" : {
+          "label" : "life insurance before",
+          "placeholder" : "Upp t.om. 9 år"
+        }
+      }
+    },
+    "Review" : {
+      "review" : {
+        "type" : "StructuredText",
+        "config" : {
+          "multi" : "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, rtl",
+          "label" : "review"
+        }
+      }
+    },
+    "Ratings" : {
+      "rating_waiting_period" : {
+        "type" : "Select",
+        "config" : {
+          "options" : [ "1", "2", "3", "4", "5" ],
+          "label" : "rating waiting period"
+        }
+      },
+      "rating_age" : {
+        "type" : "Select",
+        "config" : {
+          "options" : [ "1", "2", "3", "4", "5" ],
+          "label" : "rating age"
+        }
+      },
+      "rating_veterinary" : {
+        "type" : "Select",
+        "config" : {
+          "options" : [ "1", "2", "3", "4", "5" ],
+          "label" : "rating veterinary"
+        }
+      },
+      "rating_life_insurance" : {
+        "type" : "Select",
+        "config" : {
+          "options" : [ "1", "2", "3", "4", "5" ],
+          "label" : "rating life insurance"
+        }
+      },
+      "rating_excess" : {
+        "type" : "Select",
+        "config" : {
+          "options" : [ "1", "2", "3", "4", "5" ],
+          "label" : "rating excess"
+        }
+      },
+      "rating_price" : {
+        "type" : "Select",
+        "config" : {
+          "options" : [ "1", "2", "3", "4", "5" ],
+          "label" : "rating price"
+        }
+      }
+    }
+  }
