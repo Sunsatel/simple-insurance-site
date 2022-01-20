@@ -9,6 +9,7 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@bugsnag/js": "^7.15.1",
     "@nuxtjs/gtm": "^2.4.0",
     "@nuxtjs/prismic": "^1.2.3",
     "core-js": "^3.8.1",
@@ -17,7 +18,7 @@
     "gulp-sitemap": "^7.7.0",
     "lodash": "^4.17.20",
     "moment": "^2.27.0",
-    "nuxt": "2.14.12",
+    "nuxt": "2.14.7",
     "nuxt-bugsnag": "^4.2.2",
     "prismic-dom": "^2.2.4",
     "prismic-javascript": "^3.0.2"
