@@ -17,7 +17,7 @@
     "gulp-sitemap": "^7.7.0",
     "lodash": "^4.17.20",
     "moment": "^2.27.0",
-    "nuxt": "2.14.7",
+    "nuxt": "2.14.12",
     "nuxt-bugsnag": "^4.2.2",
     "prismic-dom": "^2.2.4",
     "prismic-javascript": "^3.0.2"
