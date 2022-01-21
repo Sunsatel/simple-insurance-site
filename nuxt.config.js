@@ -62,7 +62,7 @@ export default {
 
   gtm: {
     enabled: !(_.upperCase(process.env.APP_DEBUG) === "TRUE"),
-    id: env.parsed.GTM_ID || "undefined",
+    id: process.env.GTM_ID || "undefined",
     pageTracking: true,
   },
 
