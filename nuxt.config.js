@@ -10,7 +10,7 @@ export default {
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
     ].concat(
-      _.upperCase(env.parsed.APP_DEBUG) == "TRUE"
+      _.upperCase(process.env.APP_DEBUG) == "TRUE"
         ? [{ name: "robots", content: "noindex" }]
         : []
     ),
@@ -35,7 +35,7 @@ export default {
         apiKey: "033488aedfeada304877f3d9f04689b6",
         reporterOptions: {
           releaseStage:
-            _.upperCase(env.parsed.APP_DEBUG) == "TRUE"
+            _.upperCase(process.env.APP_DEBUG) == "TRUE"
               ? "development"
               : "production",
           autoAssignRelease: true,
@@ -52,16 +52,16 @@ export default {
   },
 
   prismic: {
-    endpoint: env.parsed.PRISMIC_URL,
+    endpoint: process.env.PRISMIC_URL,
     apiOptions: {
-      accessToken: env.parsed.PRISMIC_TOKEN,
+      accessToken: process.env.PRISMIC_TOKEN,
     },
     linkResolver: "@/plugins/link-resolver",
     htmlSerializer: "@/plugins/html-serializer",
   },
 
   gtm: {
-    enabled: !(_.upperCase(env.parsed.APP_DEBUG) === "TRUE"),
+    enabled: !(_.upperCase(process.env.APP_DEBUG) === "TRUE"),
     id: env.parsed.GTM_ID || "undefined",
     pageTracking: true,
   },
@@ -74,8 +74,8 @@ export default {
     crawler: false,
     fallback: "404.html",
     async routes() {
-      let api = await Prismic.getApi(env.parsed.PRISMIC_URL, {
-        accessToken: env.parsed.PRISMIC_TOKEN,
+      let api = await Prismic.getApi(process.env.PRISMIC_URL, {
+        accessToken: process.env.PRISMIC_TOKEN,
       });
       let documents = [];
       var page = 1;
